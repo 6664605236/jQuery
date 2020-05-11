@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .comment {
+            font-size: 40px;
+            color: red;
+        }
+
+        .comment>li {
+            display: inline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="comment">
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+    <script src='js/jquery.js'></script>
+    <script>
+        $(function () {
+            // 需求1 ： 鼠标移入到li标签上，当前li标签和他之前的li标签显示实心五角星，后面的li显示空心五角星
+            // 需求2 ： 鼠标离开li，所有的li都变成空心
+            // 需求3 ： 点击li，鼠标离开后，刚才点击的那个li和之前的li都编程实心五角星，后面空心五角星
+
+            // prev(); 上一个兄弟
+            // prevAll(); 之前所有的兄弟
+            // next(); 下一个兄弟
+            // nextAll(); 之后所有的兄弟
+
+            // 声明两个变量，分别记录空心/实心五角星
+            var sx_wjx = '★';
+            var kx_wjx = '☆';
+
+            // 需求1
+            $('.comment>li').on('mouseenter', function () {
+                // console.log('鼠标进入');
+                // // 当前鼠标移入的li和他之前的兄弟li都显示实心五角星
+                // $(this).text(sx_wjx).prevAll().text(sx_wjx);
+                // // 当前鼠标移入的li之后的兄弟li都显示空心五角星
+                // $(this).nextAll().text(kx_wjx);
+
+
+                // 这样不行
+                // $(this).text(sx_wjx).prevAll().text(sx_wjx).nextAll().text(kx_wjx);
+
+                // 这样又可行了，加了一个end()方法
+                $(this).text(sx_wjx).prevAll().text(sx_wjx).end().nextAll().text(kx_wjx);
+            }).on('mouseleave', function () {
+                // 需求2
+                $('.comment>li').text(kx_wjx);
+                // 获取刚才点击的那个li
+                $('.comment>li[clickCurrent]').text(sx_wjx).prevAll().text(sx_wjx);
+
+                // console.log('鼠标离开');
+            }).on('click', function () {
+                // 需求3:给鼠标当前点击的li做一个记号，为什么要做一个记号，是因为鼠标离开的时候，要知道你刚才点击的是哪一个li
+                // 给当前鼠标点击的这个li添加一个独一无二的属性
+                $(this).attr('clickCurrent', 'current').siblings().removeAttr('clickCurrent');
+
+                // console.log('单击');
+            });
+        });
+    </script>
+</body>
+
+</html>

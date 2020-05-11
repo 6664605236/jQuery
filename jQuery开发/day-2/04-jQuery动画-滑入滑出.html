@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="滑入" id="slideDown">
+    <input type="button" value="滑出" id="slideUp">
+    <input type="button" value="切换" id="slideToggle">
+    <div id="div1"></div>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function () {
+            // 1. 滑入 slideDown(参数1，参数2)
+            // 参数1 ： 动画执行的时长
+            // 参数2 ： 动画执行完毕后的回调函数
+            $('#slideDown').click(function (e) {
+                e.preventDefault();
+                // 让id为div1 的元素滑入
+                //$('#div1').slideDown();//没有给参数相当于给了一个默认的时长，normal代表的是400毫秒
+                // $('#div1').slideDown(2000);
+                $('#div1').slideDown(2000, function () {
+                    alert('滑入了');
+                });
+            });
+
+            // 2.滑出 slideUp()
+            $('#slideUp').click(function (e) {
+                e.preventDefault();
+                // 让id为div1 的元素滑出
+                // $('#div1').slideUp();
+                // $('#div1').slideUp(2000);
+                $('#div1').slideUp(2000, function () {
+                    alert('滑出了');
+                });
+            });
+
+            // 3. 切换 slideToggle()
+            // 元素是隐藏状态就滑入，元素是显示状态就滑出
+            $('#slideToggle').click(function (e) {
+                e.preventDefault();
+                $('#div1').slideToggle(1000);
+            });
+        });
+    </script>
+</body>
+
+</html>

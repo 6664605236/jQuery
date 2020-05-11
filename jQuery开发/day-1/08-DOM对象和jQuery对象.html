@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="one"></div>
+    <div></div>
+    <div></div>
+    <script src="./node_modules/jQuery/tmp/jquery.js"></script>
+    <script>
+        // 入口函数
+        $(function () {
+            // 1.DOM对象
+            // 原生js选择器获取到的对象
+            // 特点：只能调用dom方法或者属性，不能调用jQuery的属性或者方法
+            // document.getElementById('');
+            // document.getElementsByTagName('');
+            // var div1 = document.getElementById('one');
+            // div1.style.backgroundColor = 'red'; //dom对象是可以调用dom的属性或者方法
+            // div1.css('backgroundColor', 'green');//报错了，因为dom对象不可以调用jQuery的方法
+
+            // 2. jQuery对象
+            // 利用jQuery选择器获取到的对象
+            // 特点：只能调用jQuery的方法或者属性，不能调用原生jsdom对象的属性或者方法
+            // var $div1 = $('#one');
+            // $div1.css('backgroundColor', 'green'); //jQuery对象是可以调用jQuery方法的
+            // $div1.style.backgroundColor = 'red'; //报错了
+
+
+            // 3.jQuery对象是什么样的？
+            // jQuery对象是一个伪数组，jQuery其实就是一个dom对象的包装集
+            // var div1 = document.getElementById('one');
+            // console.log(div1);
+
+            // var $div1 = $('#one');
+            // console.log($div1);
+            // console.log($div1.__proto__ === Array.prototype); //false jQuery对象是一个伪数组
+
+            // var $divs = $('div');
+            // console.log($divs);
+
+            // 4.dom对象转换成jQuery
+            // var div1 = document.getElementById('one');
+            // var $div1 = $(div1);
+            // console.log($div1);
+
+            // 5. jQuery 对象转换成dom对象
+            // 5.1 使用下标取出来
+            var $divs = $('div');
+            console.log($divs);
+            // var div1 = $divs[0];
+            // console.log(div1);
+
+            // 5.2 使用jQuery方法get()
+            var div2 = $divs.get(1);
+            console.log(div2);
+
+
+
+        });
+    </script>
+</body>
+
+</html>

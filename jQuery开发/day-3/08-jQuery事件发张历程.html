@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin-top: 10px;
+        }
+
+        .one {
+            border: 1px solid red;
+        }
+
+        .two {
+            border: 1px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+    <br>
+    <br>
+    <div class="one" id="one"></div>
+    <span style="border: 1px solid green;">我是一个span标签</span>
+    <script src='js/jquery.js'></script>
+    <script>
+        $(function () {
+            // 用原生的js给div注册单击事件
+            // 原生js注册相同的事件后面的会把前面的覆盖掉
+            // document.getElementById('one').onclick = function () {
+            //     alert('单击事件');
+            // }
+            // document.getElementById('one').onclick = function () {
+            //     alert('单击事件123456');
+            // }
+
+            // jQuery
+            // jQuery给同一个元素注册同样的事件，后面的不会把前面的个覆盖掉
+            // $('#one').click(function (e) {
+            //     e.preventDefault();
+            //     alert('单击事件');
+            // });
+            // $('#one').click(function (e) {
+            //     e.preventDefault();
+            //     alert('单击事件123456');
+            // });
+            // ---------------------------------------------------------------------------------------------------
+            // 给按钮设置点击事件，创建一个div
+            $('#btn').click(function (e) {
+                e.preventDefault();
+                var $divNew = $('<div class="two"></div>');
+                $('body').append($divNew);
+            });
+            // ---------------------------------------------------------------------------------------------------
+
+            // jQuery注册事件的发展历程（了解即可）
+            // 1.简单事件绑定 click() 
+            // 不支持同时注册，也不支持动态注册
+            // $('div').click(function (e) {
+            //     e.preventDefault();
+            //     console.log('鼠标单击事件');
+            // });
+            // $('div').mouseenter(function () {
+            //     console.log('鼠标移入事件');
+            // });
+
+            // 2.bind()方式注册事件
+            // 支持同时注册，也不支持动态注册
+            // $('div').bind({
+            //     mouseenter: function () {
+            //         console.log('鼠标移入事件');
+            //     },
+            //     click: function () {
+            //         console.log('鼠标单击事件');
+            //     }
+            // });
+
+            // 3.delegate注册委托事件,原理是事件冒泡
+            // 支持同时注册，也支持动态注册
+            // 为所有匹配选择器（selector参数）的元素绑定一个或多个事件处理函数，
+            // 基于一个指定的根元素的子集，匹配的元素包括那些目前已经匹配到的元素，也包括那些今后可能匹配到的元素。
+            // $('body').delegate('div', {
+            //     mouseenter: function () {
+            //         console.log('鼠标移入事件');
+            //     },
+            //     click: function () {
+            //         console.log('鼠标单击事件');
+            //     }
+            // });
+
+
+            // 4. jQuery1.7 之后，jQuery用on统一了所有事件的注册方式.
+            // 4.1 on简单注册事件
+            // 不支持动态注册
+            // $('div').on('click', function () {
+            //  console.log('简单注册-单击事件');
+            // });
+
+            // 4.2 on委托注册
+            // 支持动态注册
+            $('body').on('click', 'div,span', function () {
+                console.log('委托注册-单击事件');
+            });
+            // 如果选择器是 null 或者忽略了该选择器，那么被选中的元素总是能触发事件。
+            // $('body').on('click', function () {
+            //     console.log('委托注册-单击事件');
+            // })
+        });
+    </script>
+</body>
+
+</html>

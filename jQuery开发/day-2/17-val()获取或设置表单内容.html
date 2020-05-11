@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+    <br></br>
+    <input type="text" id="txt" value="请输入账号">
+    <script src='js/jquery.js'></script>
+    <script>
+        $(function () {
+            // 原生js中是通过value属性来获取或者设置表单元素的值
+            // jQuery中如何设置或者获取表单元素的值呢？ val()
+            $('#btn').click(function (e) {
+                e.preventDefault();
+                // 1. val()方法 不给参数就是获取
+                // console.log($('#txt').val());
+
+                // 2. val()方法 给参数就是设置
+                $('#txt').val('我是设置的值');
+
+            });
+        });
+    </script>
+</body>
+
+</html>

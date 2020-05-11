@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            width: 1100px;
+            margin: 0px auto;
+        }
+
+        ul li {
+            text-align: center;
+            margin-top: 10px;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            display: inline-block;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ulList">
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+        <li>什么都看不见</li>
+    </ul>
+
+    <script src='js/jquery.js'></script>
+    <script>
+        $(function () {
+            // 需求1：找到所有的li标签,分别设置透明度,透明度是递增到1的
+
+            // 1. 获取所有的li标签
+            var $lis = $('#ulList').children();
+            console.log($lis);
+
+            // 2. 给$lis里面的每一个li标签设置透明度
+            //$lis.css('opacity', 0.5); //如果这样设置的话，由于隐式迭代那每一个li标签的透明度都设置成了0.5.不符合需求
+
+
+            // each(); 遍历一个jQuery对象（集合），为每个匹配元素执行一个函数。
+            // jQuery的隐式迭代会对所有的DOM对象设置相同的值，但如果我们需要给每一个对象设置不同的值的时候，就需要自己去进行迭代了
+            // .each()方法用来让DOM循环结构更简单更不易出错。它会迭代jQuery对象中的每一个DOM元素。
+            // 每次回调函数执行时，会传递当前循环次数作为参数(从0开始计数)。更重要的是，回调函数是在当前DOM元素为上下文的语境中触发的。
+            // 因此关键字 this 总是指向这个元素。
+            $lis.each(function (index, element) {
+                console.log(index); //每一个li标签的索引
+                console.log(element); //每一个li标签，是一个dom对象
+                console.log(this); //这里的this指向不同的li标签
+
+                $(element).css('opacity', (index + 1) / 10);
+            });
+        });
+    </script>
+</body>
+
+</html>

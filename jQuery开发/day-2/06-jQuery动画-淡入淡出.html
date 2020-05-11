@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="淡入" id="fadeIn">
+    <input type="button" value="淡出" id="fadeOut">
+    <input type="button" value="切换" id="fadeToggle">
+    <input type="button" value="淡入到那里" id="fadeTo">
+    <div id="div1"></div>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function () {
+            // 1.淡入 fadeIn()
+            $('#fadeIn').click(function (e) {
+                e.preventDefault();
+                // 让id为div1的元素淡入
+                // $('#div1').fadeIn(); //不给参数相当于给了一个默认的动画时长，就是normal 400毫秒
+                $('#div1').fadeIn(2000);
+                // $('#div1').fadeIn(2000, function () {
+                //     alert('淡入了');
+                // });
+            });
+
+            // 2.淡出 fadeOut()
+            $('#fadeOut').click(function (e) {
+                e.preventDefault();
+                // 让id为div1的元素淡出
+                // $('#div1').fadeOut(); //不给参数相当于给了一个默认的动画时长，就是normal 400毫秒
+                $('#div1').fadeOut(2000);
+                // $('#div1').fadeOut(2000, function () {
+                //     alert('淡出了');
+                // });
+            });
+
+            // 3.切换 fadeToggle()
+            $('#fadeToggle').click(function (e) {
+                e.preventDefault();
+                $('#div1').fadeToggle(1000);
+            });
+
+            // 4.淡入到那里 fadeTo(参数1，参数2)
+            // 注意这个方法要调用必须要有参数值传递进去，
+            // 于此同时，当fadeTo()方法调用之后，上述三个方法 fadeIn()，fadeOut()，fadeToggle() 的淡入淡出的透明度都被修改了
+            $('#fadeTo').click(function (e) {
+                e.preventDefault();
+                // $('#div1').fadeTo(1000, 0.5);
+                $('#div1').fadeTo(1000, 0.1);
+            });
+        });
+    </script>
+</body>
+
+</html>

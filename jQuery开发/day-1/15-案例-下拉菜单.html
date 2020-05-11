@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .wrap {
+            width: 500px;
+            margin: 0px auto;
+            background-color: skyblue;
+            border-radius: 5px;
+            margin-top: 80px;
+        }
+
+        .wrap>ul {
+            width: 330px;
+            margin: 0px auto;
+        }
+
+        .wrap>ul>li {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            background-color: skyblue;
+            border-radius: 5px;
+        }
+
+        .wrap>ul>li>ul {
+            display: none;
+            position: absolute;
+            background-color: skyblue;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul>
+            <li>
+                <a href="">一级菜单</a>
+                <ul>
+                    <li><a href="">二级菜单1</a></li>
+                    <li><a href="">二级菜单2</a></li>
+                    <li><a href="">二级菜单3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">一级菜单</a>
+                <ul>
+                    <li><a href="">二级菜单1</a></li>
+                    <li><a href="">二级菜单2</a></li>
+                    <li><a href="">二级菜单3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="">一级菜单</a>
+                <ul>
+                    <li><a href="">二级菜单1</a></li>
+                    <li><a href="">二级菜单2</a></li>
+                    <li><a href="">二级菜单3</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <script src="node_modules/jQuery/tmp/jquery.js"></script>
+    <script>
+        // 需求：给一级菜单li设置鼠标移入事件，二级菜单显示
+        //      给一级菜单li设置鼠标离开事件，二级菜单隐藏
+
+        $(document).ready(function () {
+
+            // 获取一级菜单li的方式
+            // $('li');//不行
+            // $('ul>li');//也不行
+            // $('.wrap li');//也不行
+            // $('.wrap>ul>li');//可行的
+
+            // 给一级菜单li设置鼠标移入事件，二级菜单显示
+            $('.wrap>ul>li').mouseover(function () {
+                //console.log(this); //谁触发了鼠标移入事件，那么这个this就是谁，this还是一个dom对象
+                // $(this).children('ul').css('display', 'block'); //显示就是更改display属性为block
+                $(this).children('ul').show(); //这个show()方法本质上还是更改display属性为block
+
+            });
+
+            // 给一级菜单li设置鼠标离开事件，二级菜单隐藏
+            $('.wrap>ul>li').mouseleave(function () {
+                // $(this).children('ul').css('display', 'none'); //显示就是更改display属性为none
+                $(this).children('ul').hide(); //这个hide()方法本质上还是更改display属性为none
+            });
+            // 思考题：
+            // 为什么不给一级菜单a标签设置鼠标移入和离开事件？
+            // 因为这样的话选不到二级菜单
+            // $('.wrap>ul>li>a').mouseover(function () {
+            //     $(this).siblings('ul').show();
+            // });
+
+            // $('.wrap>ul>li>a').mouseout(function () {
+            //     $(this).siblings('ul').hide();
+            // });
+
+        });
+    </script>
+</body>
+
+</html>

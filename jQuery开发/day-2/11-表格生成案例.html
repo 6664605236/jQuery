@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table>thead>tr>th {
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="获取数据-html()" id="btn1">
+    <input type="button" value="获取数据-$()" id="btn2">
+    <br></br>
+    <table>
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th>地址</th>
+                <th>说明</th>
+            </tr>
+        </thead>
+        <tbody id="tbData">
+
+        </tbody>
+    </table>
+
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function () {
+            // 模拟从后端拿到的数据
+            // data 数组的每一个元素其实就是一个tr
+            var data = [{
+                name: '百度',
+                url: "https://www.baidu.com",
+                type: '123456'
+            }, {
+                name: '新浪',
+                url: "https://www.baidu.com",
+                type: '123456'
+            }, {
+                name: '腾讯',
+                url: "https://www.baidu.com",
+                type: '123456'
+            }];
+
+            // 需求： 点击获取数据按钮，根据data这个数组里面的数据来给tbody追加tr
+            // data这个数组，有多少个元素，就生成多少个tr 
+            // 每一个元素又是一个对象，所以对象有多少个键值对就有多少个td
+
+            // 给获取数据按钮设置一个点击事件
+            $('#btn1').click(function (e) {
+                e.preventDefault();
+                // 1. html();
+                // 设置内容，内容中有标签会解析，会覆盖原来的内容
+                var list = [];
+                for (let i = 0; i < data.length; i++) {
+                    // 生成tr
+                    list.push('<tr>');
+                    // 生成td
+                    for (const key in data[i]) {
+                        list.push('<td>');
+                        list.push(data[i][key]);
+                        list.push('</td>');
+                    }
+                    list.push('</tr>');
+                }
+                $('#tbData').html(list.join(""));
+            });
+            $('#btn2').click(function (e) {
+                e.preventDefault();
+                // 2. $()
+                for (let i = 0; i < data.length; i++) {
+                    var $tr = $('<tr> <td> ' + data[i]['name'] + '</td> <td > ' + data[i]['url'] +
+                        '</td><td>' + data[i]['type'] + '</td></tr>');
+                    // 把创建出来的$tr追加到tbody中去
+                    $('#tbData').append($tr);
+
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

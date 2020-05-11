@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .wrap {
+            width: 320px;
+            height: 276px;
+            margin: 0px auto;
+            text-align: center;
+        }
+
+        .wrap>ul {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        .left,
+        .right {
+            width: 50px;
+        }
+
+        .center {
+            width: 200px;
+        }
+
+        .center>li {
+            height: 100%;
+            border: 1px solid red;
+        }
+
+        .left>li,
+        .right>li {
+            cursor: pointer;
+            width: 100%;
+            height: 92px;
+            padding: 30px 0;
+            border: 1px solid red;
+        }
+
+        .left>li:hover,
+        .right>li:hover {
+            background-color: wheat;
+        }
+
+        .wrap>ul>li>img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul class="left">
+            <li><a href="">人物1</a></li>
+            <li><a href="">人物2</a> </li>
+            <li><a href="">人物3</a> </li>
+        </ul>
+        <ul class="center">
+            <li style="display: block;"><img src="images\人物1.jpg" alt=""></li>
+            <li style="display: none;"><img src="images\人物2.jpg" alt=""></li>
+            <li style="display: none;"><img src="images\人物3.jpg" alt=""></li>
+            <li style="display: none;"><img src="images\人物4.jpg" alt=""></li>
+            <li style="display: none;"><img src="images\人物5.jpg" alt=""></li>
+            <li style="display: none;"><img src="images\人物6.jpg" alt=""></li>
+        </ul>
+        <ul class="right">
+            <li><a href="">人物4</a> </li>
+            <li><a href="">人物5</a> </li>
+            <li><a href="">人物6</a> </li>
+        </ul>
+    </div>
+    <script src="node_modules\jQuery\tmp\jquery.js"></script>
+    <script>
+        $(function () {
+            // 需求： 给li标签设置鼠标移入事件，让中间索引对应的li显示，其他的li隐藏
+            $('.left>li').mouseenter(function () {
+                // 获取当前鼠标移入的这个li表面的索引
+                var idx = $(this).index(); //索引：表示的是这个元素在他兄弟间的排行
+                console.log(idx);
+                // 让中间索引对应的li显示，其他的li隐藏
+                //$('.center>li:eq('+idx+')');//字符串的拼接
+                $('.center>li').eq(idx).show().siblings('li').hide();
+
+            });
+
+            $('.right>li').mouseenter(function () {
+                // 获取当前鼠标移入的这个li表面的索引
+                var idx = $(this).index(); //索引：表示的是这个元素在他兄弟间的排行
+                var sum = $('.left>li').length;
+                idx += sum; //不要写死，sum是左边的li的个数
+                $('.center>li').eq(idx).show().siblings('li').hide();
+            });
+
+
+            // 思考题？为什么是给li标签设置鼠标移入事件，而不是给a标签设置鼠标移入事件
+            // 因为给a标签设置的话，不能拿到正确的索引值
+            // $('.left a').mouseenter(function () {
+            //     var idx = $(this).index();
+            //     console.log(idx);
+            // });
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生js的缺点</title>
+    <style>
+        div {
+            height: 100px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="设置边框" id="btnOne">
+    <input type="button" value="设置文本" id="btnTwo">
+    <div></div>
+    <div></div>
+    <div></div>
+    <!-- 需求 ：点击按钮给三个div 设置边框和文本 -->
+    <script>
+        // 入口函数
+        window.onload = function () {
+            // 1. 首先获取对应的元素
+            var btnOne = document.getElementById("btnOne");
+            var btnTwo = document.getElementById("btnTwo");
+            var divs = document.getElementsByTagName("div");
+            // 2. 给btnOne绑定点击事件
+            btnOne.onclick = function () {
+                for (var i = 0; i < divs.length; i++) {
+                    divs[i].style.border = "1px red solid";
+                };
+            }
+            // 3. 给btnTwo绑定点击事件
+            btnTwo.onclick = function () {
+                for (var i = 0; i < divs.length; i++) {
+                    divs[i].textContent = "设置文本内容";
+                };
+            }
+        };
+
+        // 总结： 分析一些原生js 的缺点
+        // 1. 不能添加多个入口函数（ window.onload）， 如果添加了多个， 后面的会把前面的给覆盖。
+        // 2. 原生js的api名字都太长太难记。
+        // 3. 原生js有的时候代码冗余。
+        // 4. 原生js中有些属性或者方法， 有浏览器兼容问题。
+        // 5. 原生js容错率比较低， 前面的代码出现了问题， 后面的代码就执行不了。
+    </script>
+</body>
+
+</html>

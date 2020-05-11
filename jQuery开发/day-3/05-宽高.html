@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+        .one {
+            width: 200px;
+            border: 10px solid red;
+            padding: 20px;
+            margin: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn">
+    <div id="one" class="one" style="height: 200px;"></div>
+    <script src='js/jquery.js'></script>
+    <script>
+        $(function () {
+            // 给按钮设置一个点击事件
+            $('#btn').click(function (e) {
+                e.preventDefault();
+                // 1.1 我们要获取id为one的这个div的宽和高
+                console.log($('#one').css('height')); //200px
+                console.log($('#one').css('width')); //200px
+
+                // 1.2 width() height()
+                // 获取或者设置元素的宽高的，这个宽高不包括padding、border、margin
+                // 获取
+                console.log($('#one').width()); //200
+                console.log($('#one').height()); //200
+                // 设置
+                $('#one').width(300);
+                $('#one').height(300);
+                console.log($('#one').width()); //300
+                console.log($('#one').height()); //300
+                // 1.3 innerWidth()/innerHeight()
+                // 方法返回元素的宽度/高度(包括内边距)
+                console.log($('#one').innerWidth()); //340
+                console.log($('#one').innerHeight()); //340
+
+                // 1.4 outerWidth()/outerHeight()
+                // 方法返回元素的宽度/高度(包括内边距+边框)
+                console.log($('#one').outerWidth()); //360
+                console.log($('#one').outerHeight()); //360
+
+                // 1.5 outerWidth(true)/outerHeight(true)
+                // 方法返回元素的宽度/高度(包括内边距+边框+外边距)
+                console.log($('#one').outerWidth(true)); //420
+                console.log($('#one').outerHeight(true)); //420
+
+                // 1.6 获取页面可视区域的宽高
+                // 获取可视区域宽度
+                console.log($(window).width())
+                // 获取可视区域高度
+                console.log($(window).height())
+            });
+        });
+    </script>
+</body>
+
+</html>

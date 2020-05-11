@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="设置边框" id="btnOne">
+    <input type="button" value="设置文本" id="btnTwo">
+    <div></div>
+    <div></div>
+    <div></div>
+    <!-- 需求 ：点击按钮给三个div 设置边框和文本 -->
+    <script src="./node_modules/jQuery/tmp/jquery.js"></script>
+    <script>
+        // 入口函数
+        $(document).ready(function () {
+            // 设置边框
+            $('#btnOne').click(() => {
+                $('div').css('border', '1px solid red');
+            });
+            // 设置文本
+            $('#btnTwo').click(function () {
+                $('div').text('我是设置的文本');
+            });
+        });
+        // 这又是一个入口函数
+        $(document).ready(function () {
+            console.log('这又是一个入口函数');
+        });
+
+        // jQuery的优势
+        // 1.是可以写多个入口函数
+        // 2.jQuery 的api名字都容易记忆
+        // 3.jQuery代码简洁（隐式迭代）
+        // 4.jQuery帮我们解决了兼容问题
+        // 5.jQuery容错率较高，前面的代码除了问题，后面的代码不受影响
+    </script>
+</body>
+
+</html>

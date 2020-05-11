@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 2000px;
+            height: 2000px;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            overflow: auto;
+        }
+
+        img {
+            vertical-align: top;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="获取" id="btn1">
+    <input type="button" value="设置" id="btn2">
+    <input type="button" value="获取页面" id="btn3">
+    <input type="button" value="设置页面" id="btn4">
+    <div>
+        <img src="images/犬夜叉1.jpg" alt="">
+    </div>
+    <script src='js/jquery.js'></script>
+    <script>
+        $(function () {
+            // 获取
+            $('#btn1').click(function (e) {
+                e.preventDefault();
+                var scrollLeft = $('div').scrollLeft();
+                console.log(scrollLeft);
+                // scrollLeft() 表示元素内容被卷曲出去的宽度
+                // 获取匹配的元素集合中第一个元素的当前水平滚动条的位置或设置每个匹配元素的水平滚动条位置。
+                var scrollTop = $('div').scrollTop();
+                // scrollTop() 表示元素内容被卷曲出去的高度
+                console.log(scrollTop);
+                // 获取匹配的元素集合中第一个元素的当前垂直滚动条的位置或设置每个匹配元素的垂直滚动条位置。
+            });
+
+            // 设置
+            $('#btn2').click(function (e) {
+                e.preventDefault();
+                // 设置元素内容被卷曲出去的高度或宽度
+                $('div').scrollLeft(217);
+                $('div').scrollTop(217);
+            });
+
+            // 获取页面被卷曲的高度和宽度
+            $('#btn3').click(function (e) {
+                e.preventDefault();
+                var windowScrollTop = $(window).scrollTop();
+                var windowScrollLeft = $(window).scrollLeft();
+                console.log(windowScrollTop);
+                console.log(windowScrollLeft);
+            });
+
+            // 设置页面被卷曲的高度和宽度
+            $('#btn4').click(function (e) {
+                e.preventDefault();
+                $(window).scrollLeft(217);
+                $(window).scrollTop(217);
+            });
+        });
+    </script>
+</body>
+
+</html>

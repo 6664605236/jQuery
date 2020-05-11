@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script src="js/demo.js"></script>
+    <script src='js/jquery.js'></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            // 1. 如何查看jQuery的版本？
+            // 通过jQuery文件名来查看jQuery的版本是不靠谱的做法
+            // 通过以下四种方式可以查看jQuery的版本
+            console.log(jQuery.fn.jquery);
+            console.log(jQuery.prototype.jquery);
+            console.log($.fn.jquery);
+            console.log($.prototype.jquery);
+
+            // 2.如果引入了多个jQuery文件，那使用的$是哪一个jQuery文件中的呢？
+            //哪个文件后引入，使用的$就是谁的
+            console.log(jQuery.fn.jquery);
+            console.log(jQuery.prototype.jquery);
+            console.log($.fn.jquery);
+            console.log($.prototype.jquery);
+
+            // 3. 多库共存
+            // console.log('-- -- -- -- -- -- - ');
+
+            // var _$ = $.noConflict(); //把$符号的控制权给释放了
+
+            // (function ($) {
+            //     // 在这个自执行函数中，就可以继续使用$ 了
+            // })(_$);
+
+            // console.log(_$.fn.jquery);
+            // console.log(_$.prototype.jquery);
+            // console.log('-- -- -- -- -- -- - ');
+            // console.log(jQuery.fn.jquery);
+            // console.log(jQuery.prototype.jquery);
+            // console.log($.fn.jquery);
+            // console.log($.prototype.jquery);
+
+
+            console.log('++++++++++++++++++++++++++++++');
+            // 4. 多库共存2
+            var $341 = $.noConflict(); //3.4.1版本的把jQuery的$的控制权给释放了
+            var $172 = $.noConflict(); //1.7.2版本的把jQuery的$的控制权给释放了
+            console.log($);
+            console.log($341.fn.jquery);
+            console.log($172.fn.jquery);
+        });
+    </script>
+</body>
+
+</html>

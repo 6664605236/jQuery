@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+        table {
+            text-align: center;
+        }
+
+        thead {
+            background-color: teal;
+        }
+
+        tbody {
+            background-color: violet;
+        }
+
+        th {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <input type="button" value="清空内容" id="btn">
+        <table border="solid">
+            <thead>
+                <tr>
+                    <th>课程名称</th>
+                    <th>所属学院</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                    <td>JavaScript</td>
+                    <td>前端开发学院</td>
+                    <td>
+                        <a href="javascript:;" class="get">DELETE</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CSS</td>
+                    <td>前端开发学院</td>
+                    <td>
+                        <a href="javascript:;" class="get">DELETE</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>HTML</td>
+                    <td>前端开发学院</td>
+                    <td>
+                        <a href="javascript:;" class="get">DELETE</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src='js/jquery.js'></script>
+    <script>
+        $(function () {
+            // 1.清空内容
+            $('#btn').click(function (e) {
+                e.preventDefault();
+                $('#tbody').empty();
+            });
+
+            // 2. 删除对应的行
+            $('#tbody .get').click(function () {
+                // 点击a标签，删除a标签对应的哪一行
+                $(this).parent().parent().remove();
+            });
+        });
+    </script>
+</body>
+
+</html>

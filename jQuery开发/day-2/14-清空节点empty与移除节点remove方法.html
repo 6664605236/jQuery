@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" value="按钮" id="btn1">
+    <input type="button" value="按钮" id="btn2">
+    <input type="button" value="按钮" id="btn3">
+    <ul id="ul1">
+        <li>我是第1个li标签</li>
+        <li>我是第2个li标签</li>
+        <li id="li3">我是第3个li标签</li>
+        <li>我是第4个li标签</li>
+        <li>我是第5个li标签</li>
+    </ul>
+    <script src='js/jquery.js'></script>
+    <script>
+        // 清空元素 : empty()
+        // 移除节点 : remove()
+        $(function () {
+            // 给我们的按钮设置点击事件
+            // 1. 清空ul
+            $('#btn1').click(function (e) {
+                e.preventDefault();
+                //$('#ul1').html(''); //不推荐使用，不安全，有可能会造成内存泄漏
+                $('#ul1').empty(); //推荐使用
+
+            });
+            // 2.移除某一元素
+            $('#btn2').click(function (e) {
+                e.preventDefault();
+                $('#li3').remove(); //"自杀"
+            });
+
+            // 3. 移除ul 但是只能获取li3这个标签。
+            $('#btn3').click(function (e) {
+                e.preventDefault();
+                $('#li3').parent().remove();
+            });
+        });
+    </script>
+</body>
+
+</html>

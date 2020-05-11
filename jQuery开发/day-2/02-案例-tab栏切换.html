@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 800px;
+            height: 800px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .tab {
+            width: 800px;
+        }
+
+        .tab-item {
+            display: inline-block;
+            width: 90px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .picture>.main {
+            position: absolute;
+            width: 800px;
+            height: 600px;
+        }
+
+        .picture>.main>img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .active {
+            border-top: red solid 4px;
+        }
+
+        .selected {
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="tab">
+            <li class="tab-item active">犬夜叉1</li>
+            <li class="tab-item">犬夜叉2</li>
+            <li class="tab-item">犬夜叉3</li>
+            <li class="tab-item">犬夜叉4</li>
+            <li class="tab-item">犬夜叉5</li>
+            <li class="tab-item">犬夜叉6</li>
+        </ul>
+        <div class="picture">
+            <div class="main selected">
+                <img src="images/犬夜叉1.jpg" alt="">
+            </div>
+            <div class="main">
+                <img src="images/犬夜叉2.jpg" alt="">
+            </div>
+            <div class="main">
+                <img src="images/犬夜叉3.jpg" alt="">
+            </div>
+            <div class="main">
+                <img src="images/犬夜叉4.jpg" alt="">
+            </div>
+            <div class="main">
+                <img src="images/犬夜叉5.jpg" alt="">
+            </div>
+            <div class="main">
+                <img src="images/犬夜叉6.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function () {
+            //  需求：给tab栏的每一个li标签设置鼠标移入事件，当前li添加active类，其他的兄弟li移除active类
+            // 找到当前tab栏索引一致的div，让他添加selected类，其他的兄弟div移除selected类
+
+            // 需求1
+            $('.tab>.tab-item').mouseenter(function () {
+                // 注意一个小细节：这里的this不可以加引号哦，这里是this对象而不是字符串
+                $(this).addClass('active').siblings('li').removeClass('active');
+                // 获取鼠标当前移入的这个li标签的索引值
+                var idx = $(this).index();
+
+                // 需求2
+                $('.picture>.main').eq(idx).addClass('selected').siblings('div').removeClass(
+                    'selected');
+            });
+        });
+    </script>
+</body>
+
+</html>

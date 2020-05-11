@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        #box {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 500px;
+            border-radius: 15px;
+        }
+
+        #headPart {
+            width: 100%;
+            height: 300px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-color: pink;
+        }
+
+        #bottomPart {
+            width: 100%;
+            height: 200px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            background-color: aqua;
+        }
+
+        #closeButton {
+            background-color: black;
+            display: inline-block;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            text-align: center;
+            line-height: 20px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <span id="closeButton">x</span>
+        <div class="hd" id="headPart"></div>
+        <div class="bd" id="bottomPart"></div>
+    </div>
+
+
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function () {
+            // 1. 给我们的关闭按钮一个点击事件
+            $('#closeButton').click(function () {
+                // 2. 让下面那部分的高度动画变为0
+                $('#bottomPart').animate({
+                    height: 0
+                }, 1000, function () {
+                    // 让整个那部分的宽度动画变为0
+                    $('#closeButton').animate({
+                        right: -50
+                    }, 1000);
+                    $('#box').animate({
+                        width: 0
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
