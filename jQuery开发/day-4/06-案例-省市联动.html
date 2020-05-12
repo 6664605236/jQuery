@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="one">
+        <select name=""></select>
+        <select name=""></select>
+        <select name=""></select>
+    </div>
+    <script src='js/jquery.js'></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/distpicker/2.0.6/distpicker.js"></script>
+    <script>
+        $(function () {
+            // 使用jQuery插件
+            // 1. 引入jQuery文件
+            // 2. 引入插件文件
+            // 3. 调用插件方法
+            $('#one').distpicker({
+                province: "福建省",
+                city: "福州市",
+                district: "鼓楼区"
+            });
+        });
+    </script>
+</body>
+
+</html>
